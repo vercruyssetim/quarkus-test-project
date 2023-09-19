@@ -12,4 +12,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with maven
-        run: mvn clean package -Dquarkus.container-image.build=true
+        run: mvn clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
