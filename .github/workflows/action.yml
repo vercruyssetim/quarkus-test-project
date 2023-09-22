@@ -18,3 +18,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build with maven
         run: mvn clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.native.container-build=true -Pnative
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v2
+        if: always()
+        with:
+          files: |
+            surefire-reports/**/*.xml
