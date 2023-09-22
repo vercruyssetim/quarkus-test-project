@@ -20,7 +20,7 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<PersonDTO> getAllCountries() {
         return personRepository.findAll().stream()
-                .map(t -> new PersonDTO(t.id(), t.firstName(), t.lastName()))
+                .map(t -> new PersonDTO(t.id(), t.firstName(), t.lastName() + "hallo"))
                 .toList();
     }
 }
