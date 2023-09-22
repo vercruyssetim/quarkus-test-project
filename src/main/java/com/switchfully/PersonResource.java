@@ -7,19 +7,19 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-@Path("/countries")
-public class CountryResource {
+@Path("/persons")
+public class PersonResource {
 
-    private final CountryRepository countryRepository;
+    private final PersonRepository personRepository;
 
-    public CountryResource(CountryRepository countryRepository) {
-        this.countryRepository = countryRepository;
+    public PersonResource(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<PersonDTO> getAllCountries() {
-        return countryRepository.findAll().stream()
+        return personRepository.findAll().stream()
                 .map(t -> new PersonDTO(t.id(), t.firstName(), t.lastName()))
                 .toList();
     }
