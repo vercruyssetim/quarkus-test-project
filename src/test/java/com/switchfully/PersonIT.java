@@ -1,7 +1,9 @@
 package com.switchfully;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
+import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.ResponseBodyExtractionOptions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,13 +15,13 @@ public class PersonIT {
 
     @Test
     void name() {
-        ResponseBodyExtractionOptions body = given()
+        PersonDTO[] persons = given()
                 .when()
                 .get("/persons")
                 .then()
                 .statusCode(200)
-                .extract().body();
+                .extract().as(PersonDTO[].class);
 
-        System.out.println(Arrays.toString(body.as(PersonDTO[].class)));
+        Assertions.assertThat(persons).contains(new PersonDTO(1, "The Eiffel Tower", "MONUMENT"));
     }
 }
