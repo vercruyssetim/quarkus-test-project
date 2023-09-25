@@ -1,12 +1,14 @@
 package com.switchfully;
 
-import org.junit.jupiter.api.Assertions;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PersonTest {
 
     @Test
     void name() {
-        Assertions.assertEquals(true, true);
+        Person person = new Person(1, "firstName", "lastName");
+        Assertions.assertThat(person.lastName()).isEqualTo("lastName");
     }
 }
