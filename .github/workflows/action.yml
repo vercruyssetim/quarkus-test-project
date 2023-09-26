@@ -19,6 +19,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build with maven
         run: mvn clean install --batch-mode -Dmaven.test.failure.ignore=true
-      - name: Publish Test Report
-        if: success() || failure()
-        uses: scacap/action-surefire-report@v1
+      - name: Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Maven Tests
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: true
