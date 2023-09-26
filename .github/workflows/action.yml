@@ -27,12 +27,7 @@ jobs:
           path: target/surefire-reports/*.xml,target/failsafe-reports/TEST-*.xml
           reporter: java-junit
           fail-on-error: false
-      - name: Add coverage to PR
-        id: jacoco
-        uses: madrapps/jacoco-report@v1.6.1
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
         with:
-          paths: |
-            ${{ github.workspace }}/target/jacoco-report/jacoco-resources/jacoco.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 40
-          min-coverage-changed-files: 60
+          jacoco-csv-file: target/jacoco-report/jacoco.csv
