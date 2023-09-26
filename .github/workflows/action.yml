@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build with maven
-        run: mvn clean install -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.native.container-build=true -Pnative -Dmaven.test.failure.ignore=true
+        run: mvn clean install --batch-mode -Dmaven.test.failure.ignore=true
       - name: Publish Test Report
         if: success() || failure()
         uses: scacap/action-surefire-report@v1
